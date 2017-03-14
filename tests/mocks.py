@@ -306,3 +306,42 @@ def fake_card_error(*args, **kwargs):
     """
     fake.status_code = 404
     return fake
+
+def fake_get_bankAccount(*args, **kwargs):
+    fake = FakeResponse()
+    fake.content = """
+    {
+        "object": "bank_account",
+        "id": 17422412,
+        "bank_code": "341",
+        "agencia": "0932",
+        "agencia_dv": "5",
+        "conta": "58054",
+        "conta_dv": "1",
+        "type": "conta_corrente",
+        "document_type": "cpf",
+        "document_number": "26268738888",
+        "legal_name": "BANK ACCOUNT PYTHON",
+        "charge_transfer_fees": true,
+        "date_created": "2017-03-08T18:29:09.644Z"
+    }
+    """
+    return fake
+
+def fake_create_BankAccount(*args,**kwargs):
+    fake = FakeResponse()
+    fake.content = """
+    {
+        "id": 17422412,
+        "bank_code": "341",
+        "agencia": "0932",
+        "agencia_dv": "5",
+        "conta": "58054",
+        "conta_dv": "1",
+        "type": "conta_corrente",
+        "document_number": "26268738888",
+        "legal_name": "BANK ACCOUNT PYTHON",
+        "charge_transfer_fees": true
+    }
+    """
+    return fake
