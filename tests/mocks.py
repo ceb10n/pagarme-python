@@ -345,3 +345,63 @@ def fake_create_BankAccount(*args,**kwargs):
     }
     """
     return fake
+
+def fake_get_recipient(*args, **kwargs):
+   fake = FakeResponse()
+   fake.content = """
+   {
+       "object": "recipient",
+       "id": "re_cj01ath3700xqs56dmv00epj6",
+       "transfer_enabled": true,
+       "last_transfer": null,
+       "transfer_interval": "weekly",
+       "transfer_day": 5,
+       "automatic_anticipation_enabled": true,
+       "anticipatable_volume_percentage": 85,
+       "date_created": "2017-03-08T18:29:15.340Z",
+       "date_updated": "2017-03-08T18:29:15.340Z",
+       "bank_account": {
+           "object": "bank_account",
+           "id": 17422412,
+           "bank_code": "341",
+           "agencia": "0932",
+           "agencia_dv": "5",
+           "conta": "58054",
+           "conta_dv": "1",
+           "type": "conta_corrente",
+           "document_type": "cpf",
+           "document_number": "26268738888",
+           "legal_name": "BANK ACCOUNT PYTHON",
+           "charge_transfer_fees": true,
+           "date_created": "2017-03-08T18:29:09.644Z"
+       }
+   }
+   """
+   return fake
+
+def fake_create_recipient(*args,**kwargs):
+    fake = FakeResponse()
+    fake.content = """
+    {
+        "id": "re_cj01ath3700xqs56dmv00epj6",
+        "transfer_enabled": true,
+        "last_transfer": null,
+        "transfer_interval": "weekly",
+        "transfer_day": 5,
+        "automatic_anticipation_enabled": true,
+        "anticipatable_volume_percentage": 85,
+        "bank_account": {
+            "id": 17422412,
+            "bank_code": "341",
+            "agencia": "0932",
+            "agencia_dv": "5",
+            "conta": "58054",
+            "conta_dv": "1",
+            "type": "conta_corrente",
+            "document_type": "cpf",
+            "document_number": "26268738888",
+            "legal_name": "BANK ACCOUNT PYTHON",
+            "charge_transfer_fees": true
+        }
+    }"""
+    return fake
