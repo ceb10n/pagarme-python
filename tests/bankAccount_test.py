@@ -2,8 +2,8 @@
 
 import mock
 
-from .mocks import fake_get_bankAccount, fake_create_BankAccount
-from pagarme.bankAccount import BankAccount
+from .mocks import fake_get_bankAccount, fake_create_BankAccount,fake_request_fail
+from pagarme.bankAccount import BankAccount,PagarmeApiError
 from .pagarme_test import PagarmeTestCase
 
 
@@ -15,7 +15,11 @@ class BankAccountTestCase(PagarmeTestCase):
         bankAccount.find_by_id(17422412)
         self.assertEqual(17422412, bankAccount.id)
 
-
+    @mock.patch('requests.get', mock.Mock(side_effect=fake_request_fail))
+    def test_get_bankAccount_by_id_fails(self):
+        bankAccount = BankAccount(api_key='apikey')
+        with self.assertRaises(PagarmeApiError):
+            bankAccount.find_by_id(17422412)
 
     @mock.patch('requests.post', mock.Mock(side_effect=fake_create_BankAccount))
     def test_create_bankAccount(self):
