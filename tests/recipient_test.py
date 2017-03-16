@@ -2,8 +2,8 @@
 
 import mock
 
-from .mocks import fake_get_recipient, fake_create_recipient
-from pagarme.recipient import Recipient
+from .mocks import fake_get_recipient, fake_create_recipient,fake_request_fail
+from pagarme.recipient import Recipient,PagarmeApiError
 from pagarme.bankAccount import BankAccount
 from .pagarme_test import PagarmeTestCase
 
@@ -15,6 +15,12 @@ class RecipientTestCase(PagarmeTestCase):
         recipient = Recipient(api_key='apikey')
         recipient.find_by_id('re_cj01ath3700xqs56dmv00epj6')
         self.assertEqual('re_cj01ath3700xqs56dmv00epj6', recipient.id)
+
+    @mock.patch('requests.get', mock.Mock(side_effect=fake_request_fail))
+    def test_get_recipient_by_id_fails(self):
+        recipient = Recipient(api_key='apikey')
+        with self.assertRaises(PagarmeApiError):
+            recipient.find_by_id('re_cj01ath3700xqs56dmv00epj6')
 
     @mock.patch('requests.post', mock.Mock(side_effect=fake_create_recipient))
     def test_create_recipient(self):
