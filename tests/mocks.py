@@ -405,3 +405,27 @@ def fake_create_recipient(*args,**kwargs):
         }
     }"""
     return fake
+    
+def fake_get_payable_by_id(*args, **kwargs):
+    fake = FakeResponse()
+    fake.content = """
+    {
+        "object": "payable",
+        "id": 906983,
+        "status": "waiting_funds",
+        "amount": 1000,
+        "fee": 50,
+        "anticipation_fee": 0,
+        "installment": 1,
+        "transaction_id": 314,
+        "split_rule_id": null,
+        "bulk_anticipation_id": null,
+        "recipient_id": "re_citkg218g00hl8q6dh1pr5mld",
+        "payment_date": "2017-03-02T03:00:00.000Z",
+        "original_payment_date": null,
+        "type": "credit",
+        "payment_method": "credit_card",
+        "date_created": "2017-01-27T22:09:54.105Z"
+    }
+    """
+    return fake
