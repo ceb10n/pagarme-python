@@ -4,10 +4,11 @@ import requests
 
 from .exceptions import PagarmeApiError, NotBoundException
 from .resource import AbstractResource
+from .settings import BASE_URL
 
 
 class Recipient(AbstractResource):
-    BASE_URL = 'https://api.pagar.me/1/recipients'
+    BASE_URL = BASE_URL + 'recipients'
 
     def __init__(
         self,
