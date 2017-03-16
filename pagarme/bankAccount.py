@@ -2,7 +2,7 @@
 
 import requests
 
-from .exceptions import PagarmeApiError, NotPaidException, NotBoundException
+from .exceptions import PagarmeApiError, NotBoundException
 from .resource import AbstractResource
 from .settings import BASE_URL
 
@@ -17,8 +17,8 @@ class BankAccount(AbstractResource):
         agencia=None,
         agencia_dv=None,
         conta=None,
-        conta_dv=1,
-        type=['conta_corrente','conta_poupanca','conta_corrente_conjunta','conta_poupança_conjunta'],
+        conta_dv=None,
+        type=['conta_corrente','conta_poupanca','conta_corrente_conjunta','conta_poupanca_conjunta'],
         document_number=None,
         legal_name=None,
         **kwargs):
